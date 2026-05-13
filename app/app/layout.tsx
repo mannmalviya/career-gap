@@ -13,7 +13,7 @@ export default function AppLayout({
           <Link href="/app" className="font-semibold tracking-tight">
             Career-Gap
           </Link>
-          <UserButton afterSignOutUrl="/" />
+          <UserButton />
         </div>
       </header>
       <div className="flex-1 max-w-5xl w-full mx-auto px-6 py-8">

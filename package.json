@@ -9,17 +9,25 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.73",
     "@clerk/nextjs": "^7.3.3",
+    "ai": "^6.0.180",
+    "drizzle-orm": "^0.44.7",
     "next": "15.5.18",
+    "pg": "^8.20.0",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "svix": "^1.93.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "15.5.18",
     "tailwindcss": "^4",
