@@ -11,9 +11,17 @@ export default function AppLayout({
       <header className="border-b border-foreground/10">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/app" className="font-semibold tracking-tight">
-            Career-Gap
+            Career Gap
           </Link>
-          <UserButton />
+          <div className="flex items-center gap-5">
+            <Link
+              href="/app/profile"
+              className="text-sm text-foreground/70 hover:text-foreground"
+            >
+              Profile
+            </Link>
+            <UserButton />
+          </div>
         </div>
       </header>
       <div className="flex-1 max-w-5xl w-full mx-auto px-6 py-8">
