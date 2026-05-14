@@ -10,8 +10,8 @@ export default function AppLayout({
     <div className="min-h-screen flex flex-col font-sans">
       <header className="border-b border-foreground/10">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/app" className="font-semibold tracking-tight">
-            Career Gap
+          <Link href="/app" className="font-serif text-xl tracking-tight">
+            Career-Gap
           </Link>
           <div className="flex items-center gap-5">
             <Link

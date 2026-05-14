@@ -5,7 +5,7 @@
       .fg { fill: #ededed; stroke: #ededed; }
     }
   </style>
-  <rect class="fg" x="2" y="22" width="10" height="3" rx="1.5" stroke="none"/>
-  <rect class="fg" x="20" y="22" width="10" height="3" rx="1.5" stroke="none"/>
-  <path class="fg" d="M 6 22 C 6 8 26 8 26 22" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <rect class="fg" x="2" y="23" width="10" height="2" rx="1" stroke="none"/>
+  <rect class="fg" x="20" y="23" width="10" height="2" rx="1" stroke="none"/>
+  <path class="fg" d="M 6 23 C 6 10 26 10 26 23" fill="none" stroke-width="1.75" stroke-linecap="round"/>
 </svg>

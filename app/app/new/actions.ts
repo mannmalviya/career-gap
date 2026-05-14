@@ -34,7 +34,7 @@ export async function createAnalysis(formData: FormData) {
     .values({ clerkUserId, rawText: jobText })
     .returning({ id: targetJobs.id });
 
-  const { gap_report, roadmap } = await runGapAnalysis({
+  const { title, gap_report, roadmap } = await runGapAnalysis({
     resumeText,
     jobText,
     hoursPerDay,
@@ -47,6 +47,7 @@ export async function createAnalysis(formData: FormData) {
       resumeId: resume.id,
       targetJobId: targetJob.id,
       hoursPerDay,
+      title,
       gapReport: gap_report,
       roadmap,
     })

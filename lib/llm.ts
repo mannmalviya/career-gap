@@ -10,6 +10,11 @@ const SYSTEM_PROMPT = `You are an expert career coach. Given a candidate's resum
 Be specific over generic. Use the candidate's actual experience as evidence. When something is missing, say so plainly. The roadmap must be doable, ordered by priority, with realistic hour estimates.`;
 
 const gapAnalysisSchema = z.object({
+  title: z
+    .string()
+    .describe(
+      "Short label for this analysis in the format 'Job Title @ Company' (e.g. 'Senior Backend Engineer @ Acme'). If the company isn't stated, omit the @ and use just the role.",
+    ),
   gap_report: z.object({
     matched_skills: z
       .array(
@@ -70,7 +75,7 @@ export async function runGapAnalysis(args: {
   resumeText: string;
   jobText: string;
   hoursPerDay: number;
-}): Promise<{ gap_report: GapReport; roadmap: Roadmap }> {
+}): Promise<{ title: string; gap_report: GapReport; roadmap: Roadmap }> {
   const { resumeText, jobText, hoursPerDay } = args;
 
   const { object } = await generateObject({
@@ -88,5 +93,5 @@ ${jobText}
 The candidate can dedicate ${hoursPerDay} hours per day. Use that pace to compute est_days_at_pace.`,
   });
 
-  return object as { gap_report: GapReport; roadmap: Roadmap };
+  return object as { title: string; gap_report: GapReport; roadmap: Roadmap };
 }

@@ -66,7 +66,7 @@ export default function NewAnalysisPage() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">New analysis</h1>
+        <h1 className="font-serif text-4xl tracking-tight">New analysis</h1>
         <p className="text-foreground/60 mt-1">
           Drop your resume PDF and a target job description. We&apos;ll
           generate a gap report and a concrete roadmap.

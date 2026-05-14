@@ -3,6 +3,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import { desc, eq } from "drizzle-orm";
 import { db } from "@/db/client";
 import { analyses, targetJobs } from "@/db/schema";
+import { ConfirmDialog } from "@/components/confirm-dialog";
+import { deleteAnalysis } from "./analyses/[id]/actions";
 
 export default async function Dashboard() {
   const user = await currentUser();
@@ -14,6 +16,7 @@ export default async function Dashboard() {
           id: analyses.id,
           createdAt: analyses.createdAt,
           hoursPerDay: analyses.hoursPerDay,
+          title: analyses.title,
           jobSnippet: targetJobs.rawText,
         })
         .from(analyses)
@@ -27,7 +30,7 @@ export default async function Dashboard() {
     <div className="flex flex-col gap-8">
       <div className="flex items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight">
+          <h1 className="font-serif text-4xl tracking-tight">
             Welcome, {name}.
           </h1>
           <p className="text-foreground/60 mt-1">
@@ -61,21 +64,34 @@ export default async function Dashboard() {
       ) : (
         <ul className="flex flex-col gap-2">
           {rows.map((row) => {
-            const firstLine = row.jobSnippet.split("\n")[0].slice(0, 80);
+            const label =
+              row.title ?? row.jobSnippet.split("\n")[0].slice(0, 80);
             return (
-              <li key={row.id}>
+              <li
+                key={row.id}
+                className="group rounded-lg border border-foreground/10 hover:bg-foreground/5 transition-colors flex items-center"
+              >
                 <Link
                   href={`/app/analyses/${row.id}`}
-                  className="block rounded-lg border border-foreground/10 p-4 hover:bg-foreground/5 transition-colors"
+                  className="flex-1 min-w-0 p-4 flex items-center justify-between gap-4"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="font-medium truncate">{firstLine}</div>
-                    <div className="text-xs text-foreground/50 shrink-0">
-                      {new Date(row.createdAt).toLocaleDateString()} ·{" "}
-                      {row.hoursPerDay}h/day
-                    </div>
+                  <div className="font-medium truncate">{label}</div>
+                  <div className="text-xs text-foreground/50 shrink-0">
+                    {new Date(row.createdAt).toLocaleDateString()} ·{" "}
+                    {row.hoursPerDay}h/day
                   </div>
                 </Link>
+                <form action={deleteAnalysis.bind(null, row.id)} className="pr-2">
+                  <ConfirmDialog
+                    title="Delete this analysis?"
+                    body={`"${label}" will be permanently removed. This action cannot be undone.`}
+                    confirmLabel="Delete"
+                    triggerAriaLabel="Delete analysis"
+                    triggerClassName="w-8 h-8 flex items-center justify-center rounded text-lg text-foreground/25 hover:text-red-500 hover:bg-red-500/10 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  >
+                    ✕
+                  </ConfirmDialog>
+                </form>
               </li>
             );
           })}

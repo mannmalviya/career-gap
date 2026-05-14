@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/db/client";
 import { users } from "@/db/schema";
 import { ensureUser } from "@/lib/ensure-user";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { updatePreferences } from "./actions";
 
 export default async function ProfilePage() {
@@ -26,7 +27,7 @@ export default async function ProfilePage() {
   return (
     <div className="flex flex-col gap-10 max-w-2xl">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Profile</h1>
+        <h1 className="font-serif text-4xl tracking-tight">Profile</h1>
         <p className="text-foreground/60 mt-1 text-sm">
           Identity comes from Clerk. Edit name, email, or password from the
           avatar menu.
@@ -80,6 +81,14 @@ export default async function ProfilePage() {
             </button>
           </div>
         </form>
+
+        <div className="flex flex-col gap-2 pt-4 border-t border-foreground/10">
+          <span className="text-sm font-medium">Theme</span>
+          <ThemeToggle />
+          <span className="text-xs text-foreground/50">
+            Choose Light, Dark, or follow your system setting.
+          </span>
+        </div>
       </section>
     </div>
   );

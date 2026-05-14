@@ -4,6 +4,8 @@ import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import { db } from "@/db/client";
 import { analyses } from "@/db/schema";
+import { ConfirmDialog } from "@/components/confirm-dialog";
+import { deleteAnalysis } from "./actions";
 
 export default async function AnalysisPage({
   params,
@@ -22,16 +24,31 @@ export default async function AnalysisPage({
 
   if (!analysis) notFound();
 
-  const { gapReport, roadmap, hoursPerDay, createdAt } = analysis;
+  const { gapReport, roadmap, hoursPerDay, createdAt, title } = analysis;
 
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-1">
-        <Link href="/app" className="text-sm text-foreground/60 hover:underline w-fit">
-          ← Back to dashboard
-        </Link>
-        <h1 className="text-2xl font-semibold tracking-tight mt-2">
-          Gap analysis
+        <div className="flex items-center justify-between gap-4">
+          <Link
+            href="/app"
+            className="text-sm text-foreground/60 hover:underline w-fit"
+          >
+            ← Back to dashboard
+          </Link>
+          <form action={deleteAnalysis.bind(null, id)}>
+            <ConfirmDialog
+              title="Delete this analysis?"
+              body="This analysis will be permanently removed. This action cannot be undone."
+              confirmLabel="Delete"
+              triggerClassName="text-sm text-foreground/50 hover:text-red-500 transition-colors"
+            >
+              Delete
+            </ConfirmDialog>
+          </form>
+        </div>
+        <h1 className="font-serif text-4xl tracking-tight mt-2">
+          {title ?? "Gap analysis"}
         </h1>
         <p className="text-sm text-foreground/60">
           {new Date(createdAt).toLocaleString()} · {hoursPerDay}h/day pace

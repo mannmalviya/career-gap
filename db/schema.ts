@@ -80,6 +80,7 @@ export const analyses = pgTable("analyses", {
     .notNull()
     .references(() => targetJobs.id, { onDelete: "cascade" }),
   hoursPerDay: integer("hours_per_day").notNull(),
+  title: text("title"),
   gapReport: jsonb("gap_report").$type<GapReport>(),
   roadmap: jsonb("roadmap").$type<Roadmap>(),
   createdAt: timestamp("created_at", { withTimezone: true })
