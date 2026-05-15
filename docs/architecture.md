@@ -1,4 +1,4 @@
-# Career-Gap — Architecture
+# Career-Gap - Architecture
 
 ## Tech stack
 
@@ -7,11 +7,11 @@
 | Hosting | Vercel | decided |
 | Database | Supabase (managed Postgres) | decided |
 | Auth | Clerk | decided |
-| Frontend | Next.js 15 (App Router) + TypeScript | tentative — confirm |
-| Styling | Tailwind + shadcn/ui | tentative — confirm |
-| ORM / migrations | Drizzle ORM + Drizzle Kit | tentative — confirm |
-| LLM | Anthropic Claude SDK, default `claude-sonnet-4-6`, prompt caching on | tentative — confirm |
-| File storage | Supabase Storage | tentative — confirm |
+| Frontend | Next.js 15 (App Router) + TypeScript | tentative - confirm |
+| Styling | Tailwind + shadcn/ui | tentative - confirm |
+| ORM / migrations | Drizzle ORM + Drizzle Kit | tentative - confirm |
+| LLM | Anthropic Claude SDK, default `claude-sonnet-4-6`, prompt caching on | tentative - confirm |
+| File storage | Supabase Storage | tentative - confirm |
 
 ## System diagram
 
@@ -39,11 +39,11 @@
 
 Initial tables (Drizzle pseudo-schema; final decision on `users` table per open decision #5):
 
-- `users` — `clerk_user_id` (PK, text), `email`, `created_at`. *Optional* — could be omitted entirely and `clerk_user_id` referenced directly on every row.
-- `resumes` — `id`, `clerk_user_id`, `version`, `storage_key`, `parsed_text`, `parsed_struct (jsonb)`, `created_at`.
-- `target_jobs` — `id`, `clerk_user_id`, `source_url`, `raw_text`, `parsed_struct (jsonb)`, `created_at`.
-- `analyses` — `id`, `clerk_user_id`, `resume_id`, `target_job_id`, `gap_report (jsonb)`, `roadmap (jsonb)`, `hours_per_day`, `created_at`, `updated_at`.
-- `applications` — `id`, `clerk_user_id`, `target_job_id`, `status (enum)`, `applied_at`, `last_status_at`, `notes`. *(v1+)*
+- `users` - `clerk_user_id` (PK, text), `email`, `created_at`. *Optional* - could be omitted entirely and `clerk_user_id` referenced directly on every row.
+- `resumes` - `id`, `clerk_user_id`, `version`, `storage_key`, `parsed_text`, `parsed_struct (jsonb)`, `created_at`.
+- `target_jobs` - `id`, `clerk_user_id`, `source_url`, `raw_text`, `parsed_struct (jsonb)`, `created_at`.
+- `analyses` - `id`, `clerk_user_id`, `resume_id`, `target_job_id`, `gap_report (jsonb)`, `roadmap (jsonb)`, `hours_per_day`, `created_at`, `updated_at`.
+- `applications` - `id`, `clerk_user_id`, `target_job_id`, `status (enum)`, `applied_at`, `last_status_at`, `notes`. *(v1+)*
 
 All user-owned rows include `clerk_user_id` and are queried with `WHERE clerk_user_id = ?` at the query layer.
 
@@ -53,7 +53,7 @@ All user-owned rows include `clerk_user_id` and are queried with `WHERE clerk_us
 2. `middleware.ts` uses `clerkMiddleware()` to gate `/app/*` and `/api/app/*`.
 3. Server-side, every action calls `auth()` from `@clerk/nextjs/server` and reads `userId`.
 4. **Never trust a client-supplied user id.** Every DB query authorizes by the server-derived `userId`.
-5. No Supabase Row-Level Security — Postgres has no view of Clerk sessions; auth is enforced in the Next.js layer.
+5. No Supabase Row-Level Security - Postgres has no view of Clerk sessions; auth is enforced in the Next.js layer.
 
 ## LLM usage patterns
 

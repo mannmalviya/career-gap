@@ -41,7 +41,7 @@ export default async function Dashboard() {
         </div>
         <Link
           href="/app/new"
-          className="rounded-full bg-foreground text-background px-5 h-10 flex items-center font-medium hover:opacity-90"
+          className="shine rounded-full bg-foreground text-background px-5 h-10 flex items-center font-medium hover:opacity-90"
         >
           New analysis
         </Link>
@@ -56,7 +56,7 @@ export default async function Dashboard() {
           </p>
           <Link
             href="/app/new"
-            className="rounded-full bg-foreground text-background px-5 h-10 flex items-center font-medium hover:opacity-90 mt-2"
+            className="shine rounded-full bg-foreground text-background px-5 h-10 flex items-center font-medium hover:opacity-90 mt-2"
           >
             Start
           </Link>

@@ -11,6 +11,7 @@ export const users = pgTable("users", {
   clerkUserId: text("clerk_user_id").primaryKey(),
   email: text("email").notNull(),
   defaultHoursPerDay: integer("default_hours_per_day"),
+  defaultResumeId: uuid("default_resume_id"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -25,6 +26,9 @@ export const resumes = pgTable("resumes", {
     .notNull()
     .references(() => users.clerkUserId, { onDelete: "cascade" }),
   rawText: text("raw_text").notNull(),
+  filePath: text("file_path"),
+  fileName: text("file_name"),
+  fileSize: integer("file_size"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),

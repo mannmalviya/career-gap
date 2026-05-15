@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import { HeaderNav } from "@/components/header-nav";
 
 export default function AppLayout({
   children,
@@ -14,12 +15,7 @@ export default function AppLayout({
             Career-Gap
           </Link>
           <div className="flex items-center gap-5">
-            <Link
-              href="/app/profile"
-              className="text-sm text-foreground/70 hover:text-foreground"
-            >
-              Profile
-            </Link>
+            <HeaderNav />
             <UserButton />
           </div>
         </div>

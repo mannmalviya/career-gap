@@ -20,7 +20,7 @@ export default function Landing() {
           <Show when="signed-out">
             <Link
               href="/sign-up"
-              className="rounded-full bg-foreground text-background px-6 h-12 flex items-center font-medium hover:opacity-90"
+              className="shine rounded-full bg-foreground text-background px-6 h-12 flex items-center font-medium hover:opacity-90"
             >
               Get started →
             </Link>
@@ -34,7 +34,7 @@ export default function Landing() {
           <Show when="signed-in">
             <Link
               href="/app"
-              className="rounded-full bg-foreground text-background px-6 h-12 flex items-center font-medium hover:opacity-90"
+              className="shine rounded-full bg-foreground text-background px-6 h-12 flex items-center font-medium hover:opacity-90"
             >
               Go to dashboard →
             </Link>
@@ -51,7 +51,7 @@ export default function Landing() {
           <div className="grid gap-10 sm:grid-cols-3">
             <Feature
               title="Honest gap report"
-              body="A side-by-side view of skills you have, skills the job wants, and which gaps matter most — with evidence from your resume."
+              body="A side-by-side view of skills you have, skills the job wants, and which gaps matter most - with evidence from your resume."
             />
             <Feature
               title="Realistic roadmap"
@@ -77,7 +77,7 @@ export default function Landing() {
               your browser.
             </Step>
             <Step n={2} title="Paste the target job">
-              Drop in any job description — we pull out the skills, seniority,
+              Drop in any job description - we pull out the skills, seniority,
               and what matters.
             </Step>
             <Step n={3} title="Get your roadmap">
@@ -99,7 +99,7 @@ export default function Landing() {
           <Show when="signed-out">
             <Link
               href="/sign-up"
-              className="rounded-full bg-foreground text-background px-6 h-12 flex items-center font-medium hover:opacity-90"
+              className="shine rounded-full bg-foreground text-background px-6 h-12 flex items-center font-medium hover:opacity-90"
             >
               Get started →
             </Link>
@@ -107,7 +107,7 @@ export default function Landing() {
           <Show when="signed-in">
             <Link
               href="/app/new"
-              className="rounded-full bg-foreground text-background px-6 h-12 flex items-center font-medium hover:opacity-90"
+              className="shine rounded-full bg-foreground text-background px-6 h-12 flex items-center font-medium hover:opacity-90"
             >
               Run an analysis →
             </Link>
@@ -155,13 +155,14 @@ function BridgeMark({ className }: { className?: string }) {
       className={className}
       aria-hidden
     >
-      <rect x="2" y="23" width="10" height="2" rx="1" fill="currentColor" />
-      <rect x="20" y="23" width="10" height="2" rx="1" fill="currentColor" />
+      <rect width="32" height="32" fill="#ff6600" />
+      <rect x="2" y="22.15" width="10" height="2.7" rx="1.35" fill="#ffffff" />
+      <rect x="20" y="22.15" width="10" height="2.7" rx="1.35" fill="#ffffff" />
       <path
-        d="M 6 23 C 6 10 26 10 26 23"
+        d="M 6 23.5 C 6 10.5 26 10.5 26 23.5"
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
+        stroke="#ffffff"
+        strokeWidth="2.7"
         strokeLinecap="round"
       />
     </svg>
